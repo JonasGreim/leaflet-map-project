@@ -22,7 +22,6 @@ const createClusterCustomIcon = function (cluster) {
 export default function App() {
 
     const [geoJsonData, setGeoJsonData] = useState(null);
-
     const [filteredData, setFilteredData] = useState(null);
     const [selectedYear, setSelectedYear] = useState('1990');
 
