@@ -60,10 +60,10 @@ export default function App() {
 
     return (
         <div className="viewContainer">
-            <div className="headerContainer">
+            <div className="uiContainerTop">
                 <h1 className="headline">Company Headquarters in the USA</h1>
             </div>
-            <div className="slider-container">
+            <div className="uiContainerBottom">
                 <Slider
                     className="year-slider"
                     marks={marks}
@@ -80,7 +80,7 @@ export default function App() {
                 <div className="slider-value">Selected Year: {selectedYear}</div>
             </div>
 
-            <MapContainer center={[37, -95]} zoom={5}>
+            <MapContainer center={[37, -95]} zoom={5} className="mapContainer">
                 {/* OPEN STREEN MAPS TILES */}
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

@@ -25,12 +25,6 @@
   width: 100vw;
 }
 
-.leaflet-container {
-  height: 90vh;
-  width: 90%;
-  border-radius: 2rem;
-}
-
 .cluster-icon {
   background-color: #333;
   height: 2em;
@@ -53,36 +47,16 @@
   margin-bottom: 10px;
 }
 
-
-.slider-container {
-  width: 60%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
-}
-
 .headline {
   font-size: 2.0rem;
   font-weight: bold;
   font-family: sans-serif;
   text-align: center;
-  margin-bottom: 1.5rem;
   color: white;
   width: 100%;
-  background: url('http://www.autodatz.com/wp-content/uploads/2017/05/Old-Car-Wallpapers-Hd-36-with-Old-Car-Wallpapers-Hd.jpg');
-}
-
-.headerContainer {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' width='1440' height='560' preserveAspectRatio='none' viewBox='0 0 1440 560'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1002%26quot%3b)' fill='none'%3e%3crect width='1440' height='560' x='0' y='0' fill='url(%26quot%3b%23SvgjsLinearGradient1003%26quot%3b)'%3e%3c/rect%3e%3cpath d='M1440 0L1135.94 0L1440 117.77z' fill='rgba(255%2c 255%2c 255%2c .1)'%3e%3c/path%3e%3cpath d='M1135.94 0L1440 117.77L1440 128.26L1131.8700000000001 0z' fill='rgba(255%2c 255%2c 255%2c .075)'%3e%3c/path%3e%3cpath d='M1131.87 0L1440 128.26L1440 390.37L862.0099999999999 0z' fill='rgba(255%2c 255%2c 255%2c .05)'%3e%3c/path%3e%3cpath d='M862.01 0L1440 390.37L1440 446.69L261.9 0z' fill='rgba(255%2c 255%2c 255%2c .025)'%3e%3c/path%3e%3cpath d='M0 560L426.72 560L0 379.97z' fill='rgba(0%2c 0%2c 0%2c .1)'%3e%3c/path%3e%3cpath d='M0 379.97L426.72 560L937.72 560L0 313.69000000000005z' fill='rgba(0%2c 0%2c 0%2c .075)'%3e%3c/path%3e%3cpath d='M0 313.69L937.72 560L1182.33 560L0 292.5z' fill='rgba(0%2c 0%2c 0%2c .05)'%3e%3c/path%3e%3cpath d='M0 292.5L1182.33 560L1240.9499999999998 560L0 223.32z' fill='rgba(0%2c 0%2c 0%2c .025)'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1002'%3e%3crect width='1440' height='560' fill='white'%3e%3c/rect%3e%3c/mask%3e%3clinearGradient x1='15.28%25' y1='-39.29%25' x2='84.72%25' y2='139.29%25' gradientUnits='userSpaceOnUse' id='SvgjsLinearGradient1003'%3e%3cstop stop-color='%230e2a47' offset='0'%3e%3c/stop%3e%3cstop stop-color='rgba(0%2c 85%2c 158%2c 0.63)' offset='1'%3e%3c/stop%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e");
-  height: 80px;
-  background-position: center calc(50% + 80px);
-  background-repeat: repeat-x;
-  width: 100%;
-  padding: 5px 5px;
-  color: white;
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .year-slider {
@@ -117,4 +91,47 @@
   height: 7px;
   background-color: #ccc;
   border-radius: 2px;
+}
+
+.mapContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+}
+
+.uiContainerTop {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  z-index: 10;
+  top: 10px;
+  left: auto;
+  right: auto;
+  width: 700px;
+  background-color: midnightblue;
+  filter: grayscale(0.5);
+  box-shadow: inset 0px 0px 5px 1px rgba(256,256,256,0.7);
+  padding: 10px;
+}
+
+.uiContainerBottom {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  z-index: 10;
+  bottom: 12px;
+  left: auto;
+  right: auto;
+  width: 700px;
+  background-color: white;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: inset 0px 0px 5px 1px rgba(0,0,0,0.45);
+
 }
