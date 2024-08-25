@@ -102,14 +102,15 @@ export default function App() {
 
                     {filteredByYearData.features && filteredByYearData.features.map((feature, id) => {
                         const [lng, lat] = feature.geometry.coordinates;
-                        const {wikiDataName, qid, revenues, profits, year} = feature.properties;
+                        const {wikiDataName, qid, revenues, profits, year, company} = feature.properties;
                         return (
                             <Marker position={[lat, lng]} icon={customIcon} key={id}>
                                 <Popup>
-                                    <strong>{wikiDataName}</strong>
+                                    <strong>{wikiDataName!=="" ? wikiDataName : company}</strong>
                                     <br/>
-
-                                    <a href={qid} target="_blank">wikidata article</a>
+                                    {qid!=="" ? (
+                                        <a href={qid} target="_blank">wikidata article</a>) : (<p> No existing Wikidata Entry </p>
+                                    )}
                                     <br/>
                                     Year: {year}
                                     <br/>
