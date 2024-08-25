@@ -45,7 +45,7 @@ export default function App() {
                 filterDataByYear(data, selectedYear);
             })
             .catch(error => console.error('Error loading GeoJSON data:', error));
-    }, [selectedYear]);
+    }, [selectedYear, selectedDataset.path]);
 
     const filterDataByYear = (data, year) => {
         const filtered = data.features.filter(feature => {
@@ -109,7 +109,7 @@ export default function App() {
                                     <strong>{wikiDataName!=="" ? wikiDataName : company}</strong>
                                     <br/>
                                     {qid!=="" ? (
-                                        <a href={qid} target="_blank">wikidata article</a>) : (<p> No existing Wikidata Entry </p>
+                                        <a href={qid} target="_blank" rel="noreferrer">wikidata article</a>) : (<p> No existing Wikidata Entry </p>
                                     )}
                                     <br/>
                                     Year: {year}
