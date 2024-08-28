@@ -1,0 +1,52 @@
+.sidebar-popup-container {
+    z-index: 10;
+    position: fixed;
+    bottom: auto;
+    top: auto;
+    display: flex;
+    flex-direction: row;
+    gap: 1.25rem;
+    transition-duration: 300ms;
+}
+
+.sidebar-popup-open {
+    left: 0;
+}
+
+.sidebar-popup-closed {
+    left: -15rem;
+}
+
+.sidebar-popup-content {
+    display: flex;
+    height: fit-content;
+    width: 15rem;
+    flex-direction: column;
+    background-color: white;
+    padding: 1.25rem;
+}
+
+.sidebar-popup-item {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+}
+
+.sidebar-popup-toggle {
+    height: fit-content;
+    width: fit-content;
+    border-radius: 0.75rem;
+    border-width: 2px;
+    background-color: white;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.sidebar-popup-toggle:hover {
+    cursor: pointer;
+}
