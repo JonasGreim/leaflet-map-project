@@ -14,13 +14,13 @@
 }
 
 .sidebar-popup-closed {
-    left: -15rem;
+    left: -17rem;
 }
 
 .sidebar-popup-content {
     display: flex;
     height: fit-content;
-    width: 15rem;
+    width: 17rem;
     flex-direction: column;
     background-color: white;
     padding: 1.25rem;
@@ -32,7 +32,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    gap: 1.25rem;
+    padding: 0.5rem;
 }
 
 .sidebar-popup-toggle {
@@ -49,4 +49,18 @@
 
 .sidebar-popup-toggle:hover {
     cursor: pointer;
+}
+
+.sidebar-popup-item img {
+    width: auto;
+    height: 58px;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+.item-name {
+    font-size: 1.1rem;
+    font-weight: normal;
+    color: #555;
+    margin: 0.5rem 0;
 }
