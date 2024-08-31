@@ -1,8 +1,8 @@
 .sidebar-popup-container {
     z-index: 10;
     position: fixed;
+    top: auto; 
     bottom: auto;
-    top: auto;
     display: flex;
     flex-direction: row;
     gap: 1.25rem;
@@ -24,6 +24,7 @@
     flex-direction: column;
     background-color: white;
     padding: 1.25rem;
+    direction: ltr; /* 恢复内容的阅读方向 */
 }
 
 .sidebar-popup-item {

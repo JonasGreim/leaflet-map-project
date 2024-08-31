@@ -6,7 +6,7 @@ import L, { point } from "leaflet";
 import React, {useEffect, useState} from "react";
 import Slider from 'react-slider';
 import Select from 'react-select';
-import {myIcon} from "./components/MapMarkerIcons";
+import {materialIcon, communicationsIcon, consumercyclicalIcon, consumerdefenseIcon, energyIcon, financialsIcon, healthIcon, industrialsIcon, informationtechnologyIcon, utilitiesIcon} from "./components/MapMarkerIcons";
 import {SidebarPopUp} from "./components/SidebarPopUp";
 
 const createClusterCustomIcon = function (cluster) {
@@ -20,7 +20,7 @@ const createClusterCustomIcon = function (cluster) {
 
 export default function App() {
     const fortune500Companies = {name: 'Fortune500', path: './fortune500Companies.geojson', yearMin: 1958, yearMax: 2005};
-    const sp500Companies = {name: 'SP500', path: './fortune500Companies.geojson', yearMin: 1980, yearMax: 2024};
+    const sp500Companies = {name: 'SP500', path: './company_after1990_new.geojson', yearMin: 1990, yearMax: 2024};
     const dropdownOptions = [
         { value: fortune500Companies, label: 'Fortune500' },
         { value: sp500Companies, label: 'SP500' },
@@ -28,7 +28,7 @@ export default function App() {
 
     const [geoJsonData, setGeoJsonData] = useState(null);
     const [filteredByYearData, setFilteredByYearData] = useState(null);
-    const [selectedYear, setSelectedYear] = useState(2000);
+    const [selectedYear, setSelectedYear] = useState(1999);
     const [selectedDataset, setSelectedDataset] = useState(fortune500Companies);
 
     useEffect(() => {
@@ -98,24 +98,23 @@ export default function App() {
 
                         {filteredByYearData.features && filteredByYearData.features.map((feature, id) => {
                             const [lng, lat] = feature.geometry.coordinates;
-                            const {wikiDataName, qid, revenues, profits, year, company, rank} = feature.properties;
+                            const {wikiDataName, qid, revenues, profits, year, company, rank,"Company Name":companyName, Headquarters} = feature.properties;
                             return (
-                                <Marker position={[lat, lng]} icon={myIcon} key={id}>
+                                <Marker position={[lat, lng]} icon={financialsIcon} key={id}>
                                     <Popup>
-                                        <strong>{wikiDataName !== "" ? wikiDataName : company}</strong>
-                                        <br/>
-                                        {qid !== "" ? (
-                                            <a href={qid} target="_blank" rel="noreferrer">wikidata article</a>) : (
-                                            <p> No existing Wikidata Entry </p>
+                                        {wikiDataName && <strong>{wikiDataName}</strong>}
+                                        {!wikiDataName && <strong>{company}</strong>}
+                                        {wikiDataName && <br/>}
+                                        {qid && (
+                                            <a href={qid} target="_blank" rel="noreferrer">wikidata article</a>
                                         )}
-                                        <br/>
-                                        Year: {year}
-                                        <br/>
-                                        Rank: {rank}
-                                        <br/>
-                                        Revenues: {revenues} ($ millions)
-                                        <br/>
-                                        Profit: {profits} ($ millions)
+                                        {/* {!qid && <p>No existing Wikidata Entry</p>} */}
+                                        {companyName && <div>Company Name: {companyName}</div>}
+                                        {Headquarters && <div>Headquarters: {Headquarters}</div>}
+                                        {year && <div>Year: {year}</div>}
+                                        {rank && <div>Rank: {rank}</div>}
+                                        {revenues && <div>Revenues: {revenues} ($ millions)</div>}
+                                        {profits && <div>Profit: {profits} ($ millions)</div>}
                                     </Popup>
                                 </Marker>
                             );
