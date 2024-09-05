@@ -24,7 +24,7 @@
     flex-direction: column;
     background-color: white;
     padding: 1.25rem;
-    direction: ltr; /* 恢复内容的阅读方向 */
+    direction: ltr;
 }
 
 .sidebar-popup-item {

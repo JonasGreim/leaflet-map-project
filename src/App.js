@@ -2,12 +2,12 @@ import "./styles.css";
 import "leaflet/dist/leaflet.css";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
-import L, { point } from "leaflet";
+import L, {Icon, point} from "leaflet";
 import React, {useEffect, useState} from "react";
 import Slider from 'react-slider';
 import Select from 'react-select';
-import {materialIcon, communicationsIcon, consumercyclicalIcon, consumerdefenseIcon, energyIcon, financialsIcon, healthIcon, industrialsIcon, informationtechnologyIcon, utilitiesIcon} from "./components/MapMarkerIcons";
-import {SidebarPopUp} from "./components/SidebarPopUp";
+import financials from './images/icons/financials.png';
+import {iconList, SidebarPopUp} from "./components/SidebarPopUp";
 
 const createClusterCustomIcon = function (cluster) {
     return L.divIcon({
@@ -47,6 +47,7 @@ export default function App() {
         });
         setFilteredByYearData({ ...data, features: filtered });
     };
+
 
     if (!geoJsonData) {
         return <div>Loading...</div>;
@@ -90,17 +91,24 @@ export default function App() {
                         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     />
-
                     <MarkerClusterGroup
                         chunkedLoading
                         iconCreateFunction={createClusterCustomIcon}
                     >
-
                         {filteredByYearData.features && filteredByYearData.features.map((feature, id) => {
                             const [lng, lat] = feature.geometry.coordinates;
                             const {wikiDataName, qid, revenues, profits, year, company, rank,"Company Name":companyName, Headquarters} = feature.properties;
+                            const industrySector = 'financials' // extract it later from the data above
+
+                            const getMarkerIcon = (industrySector) => {
+                                const iconItem = iconList.find(item => item.backend === industrySector);
+                                return new Icon({
+                                    iconUrl: iconItem ? iconItem.icon : financials,
+                                    iconSize: [45, 45],
+                                });
+                            };
                             return (
-                                <Marker position={[lat, lng]} icon={financialsIcon} key={id}>
+                                <Marker position={[lat, lng]} icon={getMarkerIcon(industrySector)} key={id}>
                                     <Popup>
                                         {wikiDataName && <strong>{wikiDataName}</strong>}
                                         {!wikiDataName && <strong>{company}</strong>}
@@ -108,7 +116,6 @@ export default function App() {
                                         {qid && (
                                             <a href={qid} target="_blank" rel="noreferrer">wikidata article</a>
                                         )}
-                                        {/* {!qid && <p>No existing Wikidata Entry</p>} */}
                                         {companyName && <div>Company Name: {companyName}</div>}
                                         {Headquarters && <div>Headquarters: {Headquarters}</div>}
                                         {year && <div>Year: {year}</div>}
