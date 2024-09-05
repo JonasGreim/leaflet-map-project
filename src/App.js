@@ -8,6 +8,7 @@ import Slider from 'react-slider';
 import Select from 'react-select';
 import financials from './images/icons/financials.png';
 import {iconList, SidebarPopUp} from "./components/SidebarPopUp";
+import {InformationButton} from "./components/InformationButton";
 
 const createClusterCustomIcon = function (cluster) {
     return L.divIcon({
@@ -59,6 +60,7 @@ export default function App() {
                 <div className="uiContainerTop">
                     <h1 className="headline">Company Headquarters in the USA</h1>
                 </div>
+                <InformationButton/>
                 <SidebarPopUp/>
                 <div className="abc">
                     <Select
