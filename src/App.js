@@ -18,7 +18,6 @@ const createClusterCustomIcon = function (cluster) {
     });
 };
 
-
 export default function App() {
     const fortune500Companies = {name: 'Fortune500', path: './fortune500Companies.geojson', yearMin: 1958, yearMax: 2005};
     const sp500Companies = {name: 'SP500', path: './company_after1990_new.geojson', yearMin: 1990, yearMax: 2024};
@@ -31,21 +30,29 @@ export default function App() {
     const [filteredByYearData, setFilteredByYearData] = useState(null);
     const [selectedYear, setSelectedYear] = useState(1999);
     const [selectedDataset, setSelectedDataset] = useState(fortune500Companies);
+    const [smoothBorderTop55, setSmoothBorderTop55] = useState(false);
 
     useEffect(() => {
         fetch(selectedDataset.path)
             .then(response => response.json())
             .then(data => {
                 setGeoJsonData(data);
-                filterDataByYear(data, selectedYear);
+                filterData(data, selectedYear);
             })
             .catch(error => console.error('Error loading GeoJSON data:', error));
-    }, [selectedYear, selectedDataset.path]);
+    }, [selectedYear, selectedDataset.path, smoothBorderTop55]);
 
-    const filterDataByYear = (data, year) => {
-        const filtered = data.features.filter(feature => {
+    const changeSmoothBorder = () => (setSmoothBorderTop55(prevState => !prevState));
+
+    const filterData = (data, year) => {
+        let filtered = data.features.filter(feature => {
             return feature.properties.year === year;
         });
+        if(!smoothBorderTop55) {
+            filtered = filtered.filter(feature => {
+                return feature.properties.rank < 51;
+            });
+        }
         setFilteredByYearData({ ...data, features: filtered });
     };
 
@@ -61,7 +68,9 @@ export default function App() {
                     <h1 className="headline">Company Headquarters in the USA</h1>
                 </div>
                 <InformationButton/>
-                <SidebarPopUp/>
+                <SidebarPopUp
+                    changeSmoothBorder={changeSmoothBorder}
+                />
                 <div className="abc">
                     <Select
                         className={"dropdown"}

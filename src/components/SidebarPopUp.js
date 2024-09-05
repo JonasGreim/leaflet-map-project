@@ -25,7 +25,7 @@ export const iconList = [
 ];
 
 
-export const SidebarPopUp = () => {
+export const SidebarPopUp = ({ changeSmoothBorder }) => {
     const [open, setOpen] = useState(true);
 
     return (
@@ -40,6 +40,16 @@ export const SidebarPopUp = () => {
                         <img className=".sidebar-popup-item img" src={item.icon} alt={item.name}/>
                     </div>
                 ))}
+                <div className="checkboxSmoothBorderBox">
+                    <label>
+                        <input
+                            className="checkboxSmoothBorder"
+                            type="checkbox"
+                            onChange={changeSmoothBorder}
+                        />
+                        Smooth Border: Top 55
+                    </label>
+                </div>
             </div>
             <div
                 className="sidebar-popup-toggle"
