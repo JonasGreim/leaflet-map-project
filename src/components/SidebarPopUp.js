@@ -40,6 +40,7 @@ export const SidebarPopUp = ({ changeSmoothBorder }) => {
                         <img className=".sidebar-popup-item img" src={item.icon} alt={item.name}/>
                     </div>
                 ))}
+                <h2 className="small-headline">Options</h2>
                 <div className="checkboxSmoothBorderBox">
                     <label>
                         <input
@@ -58,7 +59,7 @@ export const SidebarPopUp = ({ changeSmoothBorder }) => {
                     setOpen((prevState) => !prevState);
                 }}
             >
-                Legend {open ? "<" : ">"}
+                Legend & Options {open ? "<" : ">"}
             </div>
         </div>
     );
