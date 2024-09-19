@@ -9,6 +9,8 @@ import Select from 'react-select';
 import financials from './images/icons/financials.png';
 import {iconList, SidebarPopUp} from "./components/SidebarPopUp";
 import {InformationButton} from "./components/InformationButton";
+import BarChartDistributionIndustrySectors from "./components/BarChartDistributionIndustrySectors";
+
 
 const createClusterCustomIcon = function (cluster) {
     return L.divIcon({
@@ -70,7 +72,7 @@ export default function App() {
                 <SidebarPopUp
                     changeSmoothBorder={changeSmoothBorder}
                 />
-                <div className="abc">
+                <div className="year-dropdown-container">
                     <Select
                         className={"dropdown"}
                         options={dropdownOptions}
@@ -80,6 +82,11 @@ export default function App() {
                         menuPlacement="top"
                     />
                     <div className="slider-value">Choose Top50 Company Ranking</div>
+                </div>
+                <div className="graph_container">
+                    <BarChartDistributionIndustrySectors
+                        industrySectorCountData={[10, 20, 30, 15, 25, 12, 22, 18, 16, 10]}/>
+                    <div className="subtitle">Industry sector distribution</div>
                 </div>
                 <div className="uiContainerBottom">
                     <Slider
@@ -107,7 +114,17 @@ export default function App() {
                     >
                         {filteredByYearData.features && filteredByYearData.features.map((feature, id) => {
                             const [lng, lat] = feature.geometry.coordinates;
-                            const {wikiDataName, qid, revenues, profits, year, company, rank,"Company Name":companyName, Headquarters} = feature.properties;
+                            const {
+                                wikiDataName,
+                                qid,
+                                revenues,
+                                profits,
+                                year,
+                                company,
+                                rank,
+                                "Company Name": companyName,
+                                Headquarters
+                            } = feature.properties;
                             const industrySector = 'financials' // extract it later from the data above
 
                             const getMarkerIcon = (industrySector) => {
