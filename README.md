@@ -30,4 +30,4 @@ To get a local copy up and running, follow these simple steps.
 
 ### Credits 
 - Jiacheng Lang & Jonas Greim
-- University course: "Computational Spatial Humanities" at the University of Leipzig
+- The university course "Computational Spatial Humanities," taught by Dr. Thomas Efer at the University of Leipzig
