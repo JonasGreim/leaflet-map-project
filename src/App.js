@@ -33,6 +33,7 @@ export default function App() {
     const [selectedYear, setSelectedYear] = useState(1999);
     const [selectedDataset, setSelectedDataset] = useState(fortune500Companies);
     const [smoothBorderTop55, setSmoothBorderTop55] = useState(false);
+    const [industrySectorDistribution, setIndustrySectorDistribution] = useState([10, 20, 30, 15, 25, 12, 22, 18, 16, 10]);
 
     useEffect(() => {
         const filterData = (data, year) => {
@@ -55,6 +56,16 @@ export default function App() {
             })
             .catch(error => console.error('Error loading GeoJSON data:', error));
     }, [selectedYear, selectedDataset.path, smoothBorderTop55]);
+
+    // TODO uncomment if industrySector parameter is available in the data
+/*    useEffect(() => {
+        if (!filteredByYearData) return;
+
+        const industrySectorCountArray = iconList.map((industrySector) => {
+            return filteredByYearData.features.filter(feature => (feature.properties.industrySector === industrySector.backend )).length
+        })
+        setIndustrySectorDistribution(industrySectorCountArray)
+    }, [filteredByYearData]);*/
 
     const changeSmoothBorder = () => (setSmoothBorderTop55(prevState => !prevState));
 
@@ -85,7 +96,7 @@ export default function App() {
                 </div>
                 <div className="graph_container">
                     <BarChartDistributionIndustrySectors
-                        industrySectorCountData={[10, 20, 30, 15, 25, 12, 22, 18, 16, 10]}/>
+                        industrySectorCountData={industrySectorDistribution}/>
                     <div className="subtitle">Industry sector distribution</div>
                 </div>
                 <div className="uiContainerBottom">
