@@ -33,6 +33,18 @@ export default function App() {
     const [smoothBorderTop55, setSmoothBorderTop55] = useState(false);
 
     useEffect(() => {
+        const filterData = (data, year) => {
+            let filtered = data.features.filter(feature => {
+                return feature.properties.year === year;
+            });
+            if(!smoothBorderTop55) {
+                filtered = filtered.filter(feature => {
+                    return feature.properties.rank < 51;
+                });
+            }
+            setFilteredByYearData({ ...data, features: filtered });
+        };
+
         fetch(selectedDataset.path)
             .then(response => response.json())
             .then(data => {
@@ -43,19 +55,6 @@ export default function App() {
     }, [selectedYear, selectedDataset.path, smoothBorderTop55]);
 
     const changeSmoothBorder = () => (setSmoothBorderTop55(prevState => !prevState));
-
-    const filterData = (data, year) => {
-        let filtered = data.features.filter(feature => {
-            return feature.properties.year === year;
-        });
-        if(!smoothBorderTop55) {
-            filtered = filtered.filter(feature => {
-                return feature.properties.rank < 51;
-            });
-        }
-        setFilteredByYearData({ ...data, features: filtered });
-    };
-
 
     if (!geoJsonData) {
         return <div>Loading...</div>;
