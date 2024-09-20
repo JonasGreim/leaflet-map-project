@@ -141,9 +141,10 @@ export default function App() {
                                 const iconItem = iconList.find(item => item.backend === industry);
                                 return new Icon({
                                     iconUrl: iconItem ? iconItem.icon : financials,
-                                    iconSize: [45, 45],
+                                    iconSize: [40, 50],
                                 });
                             };
+
                             return (
                                 <Marker position={[lat, lng]} icon={getMarkerIcon(industry)} key={id}>
                                     <Popup>
