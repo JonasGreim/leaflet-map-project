@@ -7,6 +7,8 @@ import React, {useEffect, useState} from "react";
 import Slider from 'react-slider';
 import Select from 'react-select';
 import financials from './images/icons/financials.png';
+import playImg from './images/play_arrow.svg';
+import stopImg from './images/stop.svg';
 import {iconList, SidebarPopUp} from "./components/SidebarPopUp";
 import {InformationButton} from "./components/InformationButton";
 import BarChartDistributionIndustrySectors from "./components/BarChartDistributionIndustrySectors";
@@ -34,6 +36,7 @@ export default function App() {
     const [selectedDataset, setSelectedDataset] = useState(fortune500Companies);
     const [smoothBorderTop55, setSmoothBorderTop55] = useState(false);
     const [industrySectorDistribution, setIndustrySectorDistribution] = useState([10, 20, 30, 15, 25, 12, 22, 18, 16, 10]);
+    const [playInterval, setPlayInterval] = useState(null);
 
     useEffect(() => {
         const filterData = (data, year) => {
@@ -72,6 +75,27 @@ export default function App() {
         return <div>Loading...</div>;
     }
 
+    const handleOnClickPlay = () => {
+        if (playInterval) {
+            clearInterval(playInterval);
+            setPlayInterval(null);
+            return;
+        }
+
+        let year = selectedYear;
+        const interval = setInterval(() => {
+            year = year === selectedDataset.yearMax ? selectedDataset.yearMin : year + 1;
+            setSelectedYear(year);
+        }, 1000);
+
+        setPlayInterval(interval);
+
+        setTimeout(() => {
+            clearInterval(interval);
+            setPlayInterval(null);
+        }, (selectedDataset.yearMax - selectedDataset.yearMin + 1) * 1000);
+    };
+
     return (
         <>
             <div className="viewContainer">
@@ -82,36 +106,44 @@ export default function App() {
                 <SidebarPopUp
                     changeSmoothBorder={changeSmoothBorder}
                 />
-                <div className="year-dropdown-container">
-                    <Select
-                        className={"dropdown"}
-                        options={dropdownOptions}
-                        defaultValue={dropdownOptions[0]}
-                        placeholder="Select a dataset"
-                        onChange={(selectedOption) => setSelectedDataset(selectedOption?.value)}
-                        menuPlacement="top"
-                    />
-                    <div className="slider-value">Choose Top50 Company Ranking</div>
-                </div>
-                <div className="graph_container">
-                    <BarChartDistributionIndustrySectors
-                        industrySectorCountData={industrySectorDistribution}/>
-                    <div className="subtitle">Industry sector distribution</div>
-                </div>
-                <div className="uiContainerBottom">
-                    <Slider
-                        className="year-slider"
-                        markClassName="example-mark"
-                        min={selectedDataset.yearMin}
-                        max={selectedDataset.yearMax}
-                        step={1}
-                        thumbClassName="year-slider-thumb"
-                        trackClassName="year-slider-track"
-                        value={selectedYear}
-                        orientation="horizontal"
-                        onChange={(value) => setSelectedYear(value)}
-                    />
-                    <div className="slider-value">Selected Year: {selectedYear}</div>
+                <div className="fixed-bottom-container">
+                    <div className="dataset-dropdown-container">
+                        <Select
+                            className={"dropdown"}
+                            options={dropdownOptions}
+                            defaultValue={dropdownOptions[0]}
+                            placeholder="Select a dataset"
+                            onChange={(selectedOption) => setSelectedDataset(selectedOption?.value)}
+                            menuPlacement="top"
+                        />
+                        <div className="slider-value">Choose Top50 Company Ranking</div>
+                    </div>
+                    <div className="graph_container">
+                        <BarChartDistributionIndustrySectors
+                            industrySectorCountData={industrySectorDistribution}/>
+                        <div className="subtitle">Industry sector distribution</div>
+                    </div>
+                    <div className="slider-year-ContainerBottom">
+                        <div className="container-play-year">
+                            <button onClick={handleOnClickPlay} className="playStopButton">
+                                <img src={playInterval ? stopImg : playImg} className="playStopButtonImage"
+                                     alt={playInterval ? "stop" : "play"}/>
+                            </button>
+                            <Slider
+                                className="year-slider"
+                                markClassName="example-mark"
+                                min={selectedDataset.yearMin}
+                                max={selectedDataset.yearMax}
+                                step={1}
+                                thumbClassName="year-slider-thumb"
+                                trackClassName="year-slider-track"
+                                value={selectedYear}
+                                orientation="horizontal"
+                                onChange={(value) => setSelectedYear(value)}
+                            />
+                        </div>
+                        <div className="slider-value">Selected Year: {selectedYear}</div>
+                    </div>
                 </div>
                 <MapContainer center={[37, -95]} zoom={5} className="mapContainer" minZoom={3} maxZoom={10}>
                     <TileLayer

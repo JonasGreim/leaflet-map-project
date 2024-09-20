@@ -26,7 +26,7 @@ export const iconList = [
 
 
 export const SidebarPopUp = ({ changeSmoothBorder }) => {
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(false);
 
     return (
         <div

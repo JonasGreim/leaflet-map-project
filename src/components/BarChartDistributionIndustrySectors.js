@@ -1,4 +1,5 @@
 import React from 'react';
+import "./../styles.css";
 import { Bar } from 'react-chartjs-2';
 import {
     Chart as ChartJS,
@@ -18,6 +19,7 @@ ChartJS.register(
     Tooltip,
     Legend
 );
+
 
 const StackedBarChart = ({industrySectorCountData}) => {
     const data = {
@@ -106,7 +108,7 @@ const StackedBarChart = ({industrySectorCountData}) => {
         },
     };
 
-    return <Bar data={data} options={options} />;
+    return <Bar className="horizontal-bar-chart" data={data} options={options} />;
 };
 
 export default StackedBarChart;
