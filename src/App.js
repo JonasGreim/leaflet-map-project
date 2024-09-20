@@ -21,7 +21,7 @@ const createClusterCustomIcon = function (cluster) {
 };
 
 export default function App() {
-    const fortune500Companies = {name: 'Fortune500', path: './fortune500Companies.geojson', yearMin: 1958, yearMax: 2005};
+    const fortune500Companies = {name: 'Fortune500', path: './fortune500CompaniesWithIndustrySector.geojson', yearMin: 1958, yearMax: 2005};
     const sp500Companies = {name: 'SP500', path: './company_after1990_new.geojson', yearMin: 1990, yearMax: 2024};
     const dropdownOptions = [
         { value: fortune500Companies, label: 'Fortune500' },
@@ -57,15 +57,14 @@ export default function App() {
             .catch(error => console.error('Error loading GeoJSON data:', error));
     }, [selectedYear, selectedDataset.path, smoothBorderTop55]);
 
-    // TODO uncomment if industrySector parameter is available in the data
-/*    useEffect(() => {
+    useEffect(() => {
         if (!filteredByYearData) return;
 
         const industrySectorCountArray = iconList.map((industrySector) => {
-            return filteredByYearData.features.filter(feature => (feature.properties.industrySector === industrySector.backend )).length
+            return filteredByYearData.features.filter(feature => (feature.properties.industry === industrySector.backend )).length
         })
         setIndustrySectorDistribution(industrySectorCountArray)
-    }, [filteredByYearData]);*/
+    }, [filteredByYearData]);
 
     const changeSmoothBorder = () => (setSmoothBorderTop55(prevState => !prevState));
 
@@ -134,19 +133,19 @@ export default function App() {
                                 company,
                                 rank,
                                 "Company Name": companyName,
-                                Headquarters
+                                Headquarters,
+                                industry,
                             } = feature.properties;
-                            const industrySector = 'financials' // extract it later from the data above
 
-                            const getMarkerIcon = (industrySector) => {
-                                const iconItem = iconList.find(item => item.backend === industrySector);
+                            const getMarkerIcon = (industry) => {
+                                const iconItem = iconList.find(item => item.backend === industry);
                                 return new Icon({
                                     iconUrl: iconItem ? iconItem.icon : financials,
                                     iconSize: [45, 45],
                                 });
                             };
                             return (
-                                <Marker position={[lat, lng]} icon={getMarkerIcon(industrySector)} key={id}>
+                                <Marker position={[lat, lng]} icon={getMarkerIcon(industry)} key={id}>
                                     <Popup>
                                         {wikiDataName && <strong>{wikiDataName}</strong>}
                                         {!wikiDataName && <strong>{company}</strong>}
