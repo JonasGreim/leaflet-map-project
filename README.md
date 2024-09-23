@@ -5,6 +5,10 @@ The geographical distribution of these headquarters and their respective industr
 
 ![readMeAppPreview.png](./src/images/readMeAppPreview.png)
 
+## Website Hosted on GitHub Pages
+Explore the deployed website:
+[Click here to visit](https://jlang1.github.io/Company-Headquarters-in-the-USA/)
+
 ## Getting Started
 
 To get a local copy up and running, follow these simple steps.
