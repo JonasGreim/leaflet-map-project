@@ -1,8 +1,9 @@
 {
   "name": "leaflet-map-app",
+  "homepage": ".",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://jonasgreim.github.io/leaflet-map-project/",
+
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
