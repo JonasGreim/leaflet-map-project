@@ -9,6 +9,8 @@ The geographical distribution of these headquarters and their respective industr
 Explore the deployed website:
 [Click here to visit](https://jlang1.github.io/Company-Headquarters-in-the-USA/)
 
+*This website is optimized for desktop use and may not function as expected on mobile devices.*
+
 ## Getting Started
 
 To get a local copy up and running, follow these simple steps.
