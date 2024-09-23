@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - main  
+      - master
 
 jobs:
   upload-to-github-pages:
