@@ -16,19 +16,19 @@ jobs:
     concurrency: ci-cd-${{ github.ref }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Use Node.js 20.17.0
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with: 
           node-version: '20.17.0'
 
-      - name: Cache dependencies
-        uses: actions/cache@v3
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: npm-
+      #- name: Cache dependencies
+      #  uses: actions/cache@v3
+      #  with:
+      #    path: ~/.npm
+      #    key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+      #    restore-keys: npm-
 
       - name: Install dependencies
         run: npm ci
