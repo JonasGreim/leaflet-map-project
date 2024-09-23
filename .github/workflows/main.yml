@@ -1,4 +1,4 @@
-name: CD-Github-Pages-Pipeline
+name: CI-CD-Github-Pages-Pipeline
 
 on:
   workflow_call:
@@ -11,6 +11,9 @@ on:
 jobs:
   upload-to-github-pages:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    concurrency: ci-cd-${{ github.ref }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -33,9 +36,8 @@ jobs:
       - name: Build React app
         run: npm run build
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build
-          publish_branch: gh-pages
+          folder: build
+          branch: gh-pages
