@@ -7,7 +7,7 @@ The geographical distribution of these headquarters and their respective industr
 
 ## Website Hosted on GitHub Pages
 Explore the deployed website:
-[Click here to visit](https://jlang1.github.io/Company-Headquarters-in-the-USA/)
+[Click here to visit](https://jonasgreim.github.io/leaflet-map-project/)
 
 *This website is optimized for desktop use and may not function as expected on mobile devices.*
 
