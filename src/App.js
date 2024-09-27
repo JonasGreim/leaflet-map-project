@@ -24,7 +24,7 @@ const createClusterCustomIcon = function (cluster) {
 
 export default function App() {
     const fortune500Companies = {name: 'Fortune500', path: './fortune500CompaniesWithIndustrySector.geojson', yearMin: 1958, yearMax: 2005};
-    const sp500Companies = {name: 'SP500', path: './company_after1990_new.geojson', yearMin: 1990, yearMax: 2024};
+    const sp500Companies = {name: 'SP500', path: './sp500Companies.geojson', yearMin: 1990, yearMax: 2024};
     const dropdownOptions = [
         { value: fortune500Companies, label: 'Fortune500' },
         { value: sp500Companies, label: 'SP500' },
@@ -167,6 +167,7 @@ export default function App() {
                                 "Company Name": companyName,
                                 Headquarters,
                                 industry,
+                                market_cap,
                             } = feature.properties;
 
                             const getMarkerIcon = (industry) => {
@@ -192,6 +193,7 @@ export default function App() {
                                         {rank && <div>Rank: {rank}</div>}
                                         {revenues && <div>Revenues: {revenues} ($ millions)</div>}
                                         {profits && <div>Profit: {profits} ($ millions)</div>}
+                                        {market_cap && <div>Market Cap: {market_cap} ($ millions)</div>}
                                     </Popup>
                                 </Marker>
                             );
