@@ -11,6 +11,13 @@ Explore the deployed website:
 
 *This website is optimized for desktop use and may not function as expected on mobile devices.*
 
+## Data
+The data scraping and processing part of this project is split up into another repository. 
+
+You can find it [here](https://github.com/JonasGreim/US-headquarter-locations).
+
+
+
 ## Getting Started
 
 To get a local copy up and running, follow these simple steps.
