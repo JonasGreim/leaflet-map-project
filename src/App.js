@@ -26,8 +26,8 @@ export default function App() {
     const fortune500Companies = {name: 'Fortune500', path: './fortune500CompaniesWithIndustrySector.geojson', yearMin: 1958, yearMax: 2005};
     const sp500Companies = {name: 'SP500', path: './sp500Companies.geojson', yearMin: 1990, yearMax: 2024};
     const dropdownOptions = [
-        { value: fortune500Companies, label: 'Fortune500' },
-        { value: sp500Companies, label: 'SP500' },
+        { value: fortune500Companies, label: 'Fortune500 - Top50' },
+        { value: sp500Companies, label: 'SP500 - Top20' },
     ]
 
     const [geoJsonData, setGeoJsonData] = useState(null);
@@ -113,10 +113,16 @@ export default function App() {
                             options={dropdownOptions}
                             defaultValue={dropdownOptions[0]}
                             placeholder="Select a dataset"
-                            onChange={(selectedOption) => setSelectedDataset(selectedOption?.value)}
+                            onChange={(selectedOption) => {
+                                if(selectedYear < selectedOption?.value.yearMin || selectedYear > selectedOption?.value.yearMax) {
+                                    setSelectedYear(selectedOption?.value.yearMin)
+                                }
+                                return setSelectedDataset(selectedOption?.value)
+                                }
+                            }
                             menuPlacement="top"
                         />
-                        <div className="slider-value">Choose Top50 Company Ranking</div>
+                        <div className="slider-value">Choose Company Ranking</div>
                     </div>
                     <div className="graph_container">
                         <BarChartDistributionIndustrySectors
