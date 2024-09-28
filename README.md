@@ -7,7 +7,7 @@ The geographical distribution of these headquarters and their respective industr
 
 ## Website Hosted on GitHub Pages
 Explore the deployed website:
-[Click here to visit](https://jonasgreim.github.io/leaflet-map-project/)
+<a href="https://jonasgreim.github.io/leaflet-map-project/" target="_blank">Click here to visit</a>
 
 *This website is optimized for desktop use and may not function as expected on mobile devices.*
 
