@@ -115,7 +115,7 @@
 }
 
 .checkboxSmoothBorderBox {
-    margin-top: 20px;
+    margin-top: 10px;
     margin-bottom: 20px;
     display: flex;
     justify-content: center;
@@ -129,5 +129,11 @@
 }
 
 .small-headline {
-    padding-top: 10px;
+    padding-top: 5px;
+}
+
+.fortune500-note {
+    display: inline-block;
+    margin: 0;
+    font-size: 0.8rem;
 }

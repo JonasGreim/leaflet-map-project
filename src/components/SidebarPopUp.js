@@ -25,7 +25,7 @@ export const iconList = [
 ];
 
 
-export const SidebarPopUp = ({ changeSmoothBorder }) => {
+export const SidebarPopUp = () => {
     const [open, setOpen] = useState(false);
 
     return (
@@ -40,7 +40,8 @@ export const SidebarPopUp = ({ changeSmoothBorder }) => {
                         <img className=".sidebar-popup-item img" src={item.icon} alt={item.name}/>
                     </div>
                 ))}
-                <h2 className="small-headline">Options</h2>
+                {/*<h2 className="small-headline">Options</h2>
+                <p className="fortune500-note">(only for Fortune500)</p>
                 <div className="checkboxSmoothBorderBox">
                     <label>
                         <input
@@ -50,7 +51,7 @@ export const SidebarPopUp = ({ changeSmoothBorder }) => {
                         />
                         Smooth Border: Top 55
                     </label>
-                </div>
+                </div>*/}
             </div>
             <div
                 className="sidebar-popup-toggle"
@@ -59,7 +60,7 @@ export const SidebarPopUp = ({ changeSmoothBorder }) => {
                     setOpen((prevState) => !prevState);
                 }}
             >
-                Legend & Options {open ? "<" : ">"}
+                Legend {open ? "<" : ">"}
             </div>
         </div>
     );
