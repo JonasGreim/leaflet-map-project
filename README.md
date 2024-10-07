@@ -41,6 +41,6 @@ To get a local copy up and running, follow these simple steps.
 - React
 - Leaflet
 
-### Credits 
+## Credits 
 - Jiacheng Lang & Jonas Greim
 - The university course "Computational Spatial Humanities," taught by Dr. Thomas Efer at the University of Leipzig
