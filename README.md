@@ -4,6 +4,7 @@ The geographical distribution of these headquarters and their respective industr
 
 
 ![readMeAppPreview.png](./src/images/readMeAppPreview.png)
+![readMeAppPreview2.png](src/images/readMeAppPreview2.png)
 
 ## Website Hosted on GitHub Pages
 Explore the deployed website:
