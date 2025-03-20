@@ -42,7 +42,7 @@ To get a local copy up and running, follow these simple steps.
 - React
 - Leaflet
 
-### Documentation and Data analysis
+## Documentation and Data analysis
 You can read more about the project in the final report [here](./Final_Report.pdf]). There you can read about the project development, the application and literature research.
 
 ## Credits 
